@@ -9,9 +9,15 @@ import {
 import ConversationItem from './ConversationItem';
 
 export default class ConversationList extends Component {
+  static navigationOptions = {
+    title: 'Conversations',
+  };
+
   constructor() {
     super();
     const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
+    this.openDetail = this.openDetail.bind(this);
+    this.renderRow = this.renderRow.bind(this);
     this.state = {
       dataSource: ds.cloneWithRows([
         {name: 'Frank'},
@@ -20,12 +26,23 @@ export default class ConversationList extends Component {
     };
   }
 
+  renderRow(rowData) {
+    const open = () => {this.openDetail(rowData)}
+    return (
+      <ConversationItem style={styles.row} data={rowData} onPress={open}/>
+    );
+  }
+
+  openDetail(rowData) {
+    this.props.navigation.navigate('Detail', { data: rowData });
+  }
+
   render() {
     return (
       <ListView
         style={styles.list}
         dataSource={this.state.dataSource}
-        renderRow={(rowData) => <ConversationItem style={styles.row} data={rowData}/>}
+        renderRow={this.renderRow}
       />
     );
   }

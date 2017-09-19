@@ -1,0 +1,19 @@
+{
+  "users": {
+    "kyle": {
+      "conversations": [
+        {
+          "participant": "Kavin",
+          "messages": [
+            {
+              "received": false,
+              "content": "hello"
+            }
+          ]
+        }
+      ]
+    },
+    "kavin": {},
+    "frank": {}
+  }
+}

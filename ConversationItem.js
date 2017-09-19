@@ -3,21 +3,28 @@ import {
   Image,
   StyleSheet,
   Text,
+  TouchableHighlight,
   View
 } from 'react-native';
 
 export default class ConversationRow extends Component {
+  // onPress = () => {
+  //   this.props.onPress();
+  // }
+
   render() {
     return (
-      <View style={[this.props.style, styles.row]}>
-        <Image
-          style={styles.avatar}
-          source={require('./nophoto.jpg')} />
-        <Text
-          style={styles.name}>
-          {this.props.data.name}
-        </Text>
-      </View>
+      <TouchableHighlight onPress={this.props.onPress}>
+        <View style={[this.props.style, styles.row]}>
+          <Image
+            style={styles.avatar}
+            source={require('./nophoto.jpg')} />
+          <Text
+            style={styles.name}>
+            {this.props.data.name}
+          </Text>
+        </View>
+      </TouchableHighlight>
     );
   }
 }

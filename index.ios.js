@@ -1,9 +1,3 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
- */
-
 import React, { Component } from 'react';
 import {
   AppRegistry,
@@ -12,14 +6,36 @@ import {
   View
 } from 'react-native';
 import ConversationList from './ConversationList';
+import ConversationDetail from './ConversationDetail';
+import { StackNavigator } from 'react-navigation';
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
+import reduce from './reducers';
 
-export default class reactChatClient extends Component {
+let store = createStore(reduce);
+
+// export default class reactChatClient extends Component {
+//   render() {
+//     return (
+//       <View style={styles.container}>
+//         <View style={styles.convoHeader}/>
+//         <ConversationList/>
+//       </View>
+//     );
+//   }
+// }
+
+const ChatApp = StackNavigator({
+  Home: { screen: ConversationList },
+  Detail: { screen: ConversationDetail }
+});
+
+export default class App extends Component {
   render() {
     return (
-      <View style={styles.container}>
-        <View style={styles.convoHeader}/>
-        <ConversationList/>
-      </View>
+      <Provider store={store}>
+        <ChatApp />
+      </Provider>
     );
   }
 }
@@ -37,4 +53,4 @@ const styles = StyleSheet.create({
   }
 });
 
-AppRegistry.registerComponent('reactChatClient', () => reactChatClient);
+AppRegistry.registerComponent('reactChatClient', () => App);
