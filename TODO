@@ -1,0 +1,17 @@
+Initial state has been set up and populated with the initial list of conversations
+ConversationsContainer wraps ConversationList
+* Retrieves conversations from redux state and passes to ConversationList
+
+Up next:
+Do the same thing for ConversationDetail
+Somehow we want to get a portion of the state tree (messages just for the particular converation)
+
+First pass all messages to the ConversationDetail, then try to only send a subset
+
+October 17
+--------
+Added currentUser, currentConversation, and message to the redux state
+Created messages container which pulls data out of state and passes to ConversationDetail
+
+TODO: currentUser and currentConversation are hardcoded. We need to create an action which when dispatch updates those values.
+This action should be dispatched when you tap on a conversation in the list of conversations.

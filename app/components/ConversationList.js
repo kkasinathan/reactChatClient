@@ -13,16 +13,13 @@ export default class ConversationList extends Component {
     title: 'Conversations',
   };
 
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
     this.openDetail = this.openDetail.bind(this);
     this.renderRow = this.renderRow.bind(this);
     this.state = {
-      dataSource: ds.cloneWithRows([
-        {name: 'Frank'},
-        {name: 'Kavin'}
-      ]),
+      dataSource: ds.cloneWithRows(props.conversations)
     };
   }
 

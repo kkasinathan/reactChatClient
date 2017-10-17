@@ -7,19 +7,19 @@ import {
   View
 } from 'react-native';
 
-const conversations = {
-  'Frank': [
-    {
-      received: true,
-      message: 'Hey whats up'
-    },
-    {
-      received: false,
-      message: 'nothing'
-    },
-  ],
-  'Kavin': []
-};
+// const conversations = {
+//   'Frank': [
+//     {
+//       received: true,
+//       message: 'Hey whats up'
+//     },
+//     {
+//       received: false,
+//       message: 'nothing'
+//     },
+//   ],
+//   'Kavin': []
+// };
 
 export default class ConversationDetail extends Component {
 
@@ -29,9 +29,7 @@ export default class ConversationDetail extends Component {
 
   render() {
     const data = this.props.navigation.state.params.data;
-    const sender = data.name;
-    const messages = conversations[sender];
-    const receiver = 'Kyle';
+    const { messages, otherUser, currentUser } = this.props;
 
     const style = {
       alignItems: 'stretch'
@@ -39,7 +37,7 @@ export default class ConversationDetail extends Component {
 
     return (
       <View>
-        <MessageList messages={messages} sender={sender} receiver={receiver}/>
+        <MessageList messages={messages} sender={otherUser} receiver={currentUser}/>
         <ConversationFooter />
       </View>
     );

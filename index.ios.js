@@ -5,14 +5,36 @@ import {
   Text,
   View
 } from 'react-native';
-import ConversationList from './ConversationList';
-import ConversationDetail from './ConversationDetail';
+import ConversationsContainer from './app/containers/ConversationsContainer';
+import MessagesContainer from './app/containers/MessagesContainer';
 import { StackNavigator } from 'react-navigation';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
-import reduce from './reducers';
+import reduce from './app/reducers';
 
-let store = createStore(reduce);
+const initialState = {
+  conversations: [
+    {name: 'Frank'},
+    {name: 'Kavin'}
+  ],
+  messages: {
+    'Frank': [
+      {
+        received: true,
+        message: 'Hey whats up'
+      },
+      {
+        received: false,
+        message: 'nothing'
+      },
+    ],
+    'Kavin': []
+  },
+  currentConversation: 'Frank',
+  currentUser: 'Kyle'
+};
+
+const store = createStore(reduce, initialState);
 
 // export default class reactChatClient extends Component {
 //   render() {
@@ -26,8 +48,8 @@ let store = createStore(reduce);
 // }
 
 const ChatApp = StackNavigator({
-  Home: { screen: ConversationList },
-  Detail: { screen: ConversationDetail }
+  Home: { screen: ConversationsContainer },
+  Detail: { screen: MessagesContainer }
 });
 
 export default class App extends Component {

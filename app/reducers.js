@@ -4,5 +4,5 @@ import {
 } from './actions.js'
 
 export default function reduce(state = {}, action) {
-
+  return state;
 }
