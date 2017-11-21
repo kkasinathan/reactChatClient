@@ -19,7 +19,7 @@ export default class ConversationList extends Component {
     this.openDetail = this.openDetail.bind(this);
     this.renderRow = this.renderRow.bind(this);
     this.state = {
-      dataSource: ds.cloneWithRows(props.conversations)
+      dataSource: ds.cloneWithRows(Array.from(props.conversations))
     };
   }
 
@@ -32,7 +32,7 @@ export default class ConversationList extends Component {
 
   openDetail(rowData) {
     // TODO dispatch action
-    this.props.onConversationClick(rowData.name);
+    this.props.onConversationClick(rowData.get('name'));
     this.props.navigation.navigate('Detail');
   }
 

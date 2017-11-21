@@ -3,18 +3,23 @@ import {
   START_CONVERSATION,
   OPEN_CONVERSATION
 } from './actions.js'
+import Immutable from 'immutable';
 
-export default function reduce(state = {}, action) {
-  // technically state should be immutable
-  const newState = Object.assign({}, state);
-
+export default function reduce(state = Immutable.Map(), action) {
   if (action.type === OPEN_CONVERSATION) {
-    newState.currentConversation = action.conversationName;
+    return state.set('currentConversation', action.conversationName);
   } else if (action.type === SEND_MESSAGE) {
-    newState.messages[state.currentConversation].push({
+    const currentConversation = state.get('currentConversation')
+    const messages = state.getIn(['messages', currentConversation]);
+    const newMessage = Immutable.fromJS({
       received: false,
       message: action.message
     });
+    const updatedMessages = messages.push(newMessage);
+    return state.setIn(['messages', currentConversation], updatedMessages);
+    // return state.updateIn(['messages', state.currentConversation], messageList => {
+    //   return messageList.push();
+    // });
   }
-  return newState;
+  return state;
 }

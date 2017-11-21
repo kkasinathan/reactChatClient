@@ -4,7 +4,7 @@ import { openConversation } from '../actions';
 
 const mapStateToProps = (state) => {
   return {
-    conversations: state.conversations
+    conversations: state.get('conversations')
   };
 };
 

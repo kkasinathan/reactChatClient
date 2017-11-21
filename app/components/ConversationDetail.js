@@ -72,19 +72,20 @@ class MessageList extends Component {
     const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
     this.renderRow = this.renderRow.bind(this);
     this.state = {
-      dataSource: ds.cloneWithRows(this.props.messages),
+      ds
     };
   }
 
   renderRow(rowData) {
-    const name = rowData.received ? this.props.sender : this.props.receiver;
+    const received = rowData.get('received');
+    const name = received ? this.props.sender : this.props.receiver;
     const style = {
-      textAlign: rowData.received ? 'left' : 'right'
+      textAlign: received ? 'left' : 'right'
     };
     return (
       <View>
         <Text style={style}>{name}</Text>
-        <Text style={style}>{rowData.message}</Text>
+        <Text style={style}>{rowData.get('message')}</Text>
       </View>
     );
   }
@@ -93,7 +94,7 @@ class MessageList extends Component {
     return (
       <ListView
         style={styles.list}
-        dataSource={this.state.dataSource}
+        dataSource={this.state.ds.cloneWithRows(Array.from(this.props.messages))}
         renderRow={this.renderRow}
       />
     );

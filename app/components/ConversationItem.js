@@ -21,7 +21,7 @@ export default class ConversationRow extends Component {
             source={require('./nophoto.jpg')} />
           <Text
             style={styles.name}>
-            {this.props.data.name}
+            {this.props.data.get('name')}
           </Text>
         </View>
       </TouchableHighlight>

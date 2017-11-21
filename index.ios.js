@@ -11,8 +11,9 @@ import { StackNavigator } from 'react-navigation';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 import reduce from './app/reducers';
+import Immutable from 'immutable';
 
-const initialState = {
+const initialState = Immutable.fromJS({
   conversations: [
     {name: 'Frank'},
     {name: 'Kavin'}
@@ -41,7 +42,7 @@ const initialState = {
   },
   currentConversation: 'Frank',
   currentUser: 'Kyle'
-};
+});
 
 const store = createStore(reduce, initialState);
 
