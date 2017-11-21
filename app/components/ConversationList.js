@@ -31,7 +31,9 @@ export default class ConversationList extends Component {
   }
 
   openDetail(rowData) {
-    this.props.navigation.navigate('Detail', { data: rowData });
+    // TODO dispatch action
+    this.props.onConversationClick(rowData.name);
+    this.props.navigation.navigate('Detail');
   }
 
   render() {

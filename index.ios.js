@@ -28,7 +28,16 @@ const initialState = {
         message: 'nothing'
       },
     ],
-    'Kavin': []
+    'Kavin': [
+      {
+        received: true,
+        message: 'Hey whats up Kavin'
+      },
+      {
+        received: false,
+        message: 'nothing Kavin'
+      }
+    ]
   },
   currentConversation: 'Frank',
   currentUser: 'Kyle'

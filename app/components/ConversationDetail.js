@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {
   AppRegistry,
+  Button,
   StyleSheet,
   ListView,
   Text,
@@ -23,12 +24,32 @@ import {
 
 export default class ConversationDetail extends Component {
 
+  constructor(props) {
+    super(props);
+    this.sendMessage = this.sendMessage.bind(this);
+  }
+
   static navigationOptions = ({ navigation }) => ({
-    title: `${navigation.state.params.data.name}`,
+    // title: `${navigation.state.params.data.name}`,
+    title: 'new title'
   });
 
+  componentWillReceiveProps(updatedProps) {
+    console.log(`current props: ${this.props}`);
+    console.log(`new props: ${updatedProps}`);
+  }
+
+  shouldComponentUpdate() {
+    console.log('shouldComponentUpdate');
+    return true;
+  }
+
+  sendMessage() {
+    const onSendMessage = this.props.onSendMessage;
+    onSendMessage('new message');
+  }
+
   render() {
-    const data = this.props.navigation.state.params.data;
     const { messages, otherUser, currentUser } = this.props;
 
     const style = {
@@ -39,6 +60,7 @@ export default class ConversationDetail extends Component {
       <View>
         <MessageList messages={messages} sender={otherUser} receiver={currentUser}/>
         <ConversationFooter />
+        <Button onPress={this.sendMessage} title={'Send'} />
       </View>
     );
   }

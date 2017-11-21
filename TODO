@@ -13,5 +13,18 @@ October 17
 Added currentUser, currentConversation, and message to the redux state
 Created messages container which pulls data out of state and passes to ConversationDetail
 
-TODO: currentUser and currentConversation are hardcoded. We need to create an action which when dispatch updates those values.
+TODO: currentUser and currentConversation are hardcoded. We need to create an action which when dispatch updates currentConversation.
 This action should be dispatched when you tap on a conversation in the list of conversations.
+
+
+October 31
+--------
+Where can we go from here?
+* More UI
+* Create conversation
+* (Networking) File upload
+* Send message
+* Persist state
+
+1. Create conversation
+2. Persist state
