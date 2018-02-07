@@ -28,3 +28,21 @@ Where can we go from here?
 
 1. Create conversation
 2. Persist state
+
+November 21, 2017
+* Added immutable
+* Added sending messages in an existing conversation
+
+Up next: persistence
+
+November 28, 2017
+* Tried to add redux-persist
+* Had issues with initialState not matching structure created by persistCombineReducers
+* Seems that initial state can't be immutable
+* How does redux-persist reconcile when given initialState?
+* There's redux-persist-immutable which is from the owner of redux-persist. Still on v4, which has big API changes from v5.
+
+December 5, 2017
+* Combine reducers requires top level state to be plain js object
+* We want them to be immutable
+* How can we use a non-immutable state?

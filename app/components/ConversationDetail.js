@@ -46,7 +46,7 @@ export default class ConversationDetail extends Component {
 
   sendMessage() {
     const onSendMessage = this.props.onSendMessage;
-    onSendMessage('new message');
+    onSendMessage(Date());
   }
 
   render() {

@@ -9,42 +9,23 @@ import ConversationsContainer from './app/containers/ConversationsContainer';
 import MessagesContainer from './app/containers/MessagesContainer';
 import { StackNavigator } from 'react-navigation';
 import { Provider } from 'react-redux';
-import { createStore } from 'redux';
+import { createStore, combineReducers } from 'redux';
 import reduce from './app/reducers';
 import Immutable from 'immutable';
+import { persistStore, persistCombineReducers } from 'redux-persist';
+import storage from 'redux-persist/es/storage';
 
-const initialState = Immutable.fromJS({
-  conversations: [
-    {name: 'Frank'},
-    {name: 'Kavin'}
-  ],
-  messages: {
-    'Frank': [
-      {
-        received: true,
-        message: 'Hey whats up'
-      },
-      {
-        received: false,
-        message: 'nothing'
-      },
-    ],
-    'Kavin': [
-      {
-        received: true,
-        message: 'Hey whats up Kavin'
-      },
-      {
-        received: false,
-        message: 'nothing Kavin'
-      }
-    ]
-  },
-  currentConversation: 'Frank',
-  currentUser: 'Kyle'
-});
+const config = {
+  key: 'root',
+  storage,
+}
 
-const store = createStore(reduce, initialState);
+const reducer = persistCombineReducers(config, reduce);
+// const reducer = combineReducers({reduce});
+
+
+const store = createStore(reducer);
+// const persistor = persistStore(store)
 
 // export default class reactChatClient extends Component {
 //   render() {

@@ -5,7 +5,41 @@ import {
 } from './actions.js'
 import Immutable from 'immutable';
 
-export default function reduce(state = Immutable.Map(), action) {
+const initialState = Immutable.fromJS({
+  conversations: [
+    {name: 'Frank'},
+    {name: 'Kavin'}
+  ],
+  messages: {
+    'Frank': [
+      {
+        received: true,
+        message: 'Hey whats up'
+      },
+      {
+        received: false,
+        message: 'nothing'
+      },
+    ],
+    'Kavin': [
+      {
+        received: true,
+        message: 'Hey whats up Kavin'
+      },
+      {
+        received: false,
+        message: 'nothing Kavin'
+      }
+    ]
+  },
+  currentConversation: 'Frank',
+  currentUser: 'Kyle'
+});
+
+export default function reduce(state = initialState, action) {
+  if (state === undefined) {
+    return Immutable.Map();
+  }
   if (action.type === OPEN_CONVERSATION) {
     return state.set('currentConversation', action.conversationName);
   } else if (action.type === SEND_MESSAGE) {
